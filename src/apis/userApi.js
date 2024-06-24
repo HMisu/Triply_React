@@ -1,15 +1,13 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "http://localhost:9090"; // 백엔드 API 엔드포인트
+const API_URL = "http://localhost:9090";
 
 export const signup = createAsyncThunk(
   "user/signup",
   async (user, thunkAPI) => {
     try {
-      //  console.log(user);
       const response = await axios.post(`${API_URL}/user/sign-up`, user);
-
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -22,12 +20,7 @@ export const signin = createAsyncThunk(
   "user/signin",
   async (user , thunkAPI) => {
     try {
-        // console.log(user);
       const response = await axios.post(`${API_URL}/user/sign-in`, user);
-
-      // sessionStorage.setItem("ACCESS_TOKEN", user.token);
-      // console.log(user.token)
-      console.log(user);
       return response.data.item;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -44,67 +37,12 @@ export const signout = createAsyncThunk(
           Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`,
         },
       });
-      return { success: true }; // 성공 여부만 리턴
+      return { success: true };
     } catch (e) {
-      return thunkAPI.rejectWithValue({ success: false, error: e.message }); // 에러 메시지만 리턴
+      return thunkAPI.rejectWithValue({ success: false, error: e.message });
     }
   }
 );
-
-// export const uploadProfileImage = createAsyncThunk(
-//   'user/uploadProfileImage',
-//   async (file, thunkAPI) => {
-//     try {
-//       const formData = new FormData();
-//       formData.append('file', file);
-//       const response = await axios.post(`${API_URL}/user/upload`, formData, {
-//         headers: {
-//           Authorization: `Bearer ${sessionStorage.getItem('ACCESS_TOKEN')}`,
-//           'Content-Type': 'multipart/form-data',
-//         },
-//       });
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
-
-// export const deleteProfileImage = createAsyncThunk(
-//   "user/deleteProfileImage",
-//   async (_, thunkAPI) => {
-//     try {
-//       await axios.delete(`${API_URL}/user/delete`, {
-//         headers: {
-//           Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`,
-//         },
-//       });
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
-
-// export const updateProfileImage = createAsyncThunk(
-//   "user/updateProfileImage",
-//   async (file, thunkAPI) => {
-//     try {
-//       const formData = new FormData();
-//       formData.append("file", file);
-
-//       const response = await axios.put(`${API_URL}/user/update`, formData, {
-//         headers: {
-//           Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`,
-//           "Content-Type": "multipart/form-data"
-//         },
-//       });
-
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
 
 export const uploadProfileImage = createAsyncThunk(
   'user/uploadProfileImage',
@@ -118,7 +56,7 @@ export const uploadProfileImage = createAsyncThunk(
           'Content-Type': 'multipart/form-data',
         },
       });
-      return response.data.uploadedUrl; // 서버에서 반환된 업로드된 이미지 URL
+      return response.data.uploadedUrl;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }

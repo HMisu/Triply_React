@@ -2,12 +2,10 @@ import React, {useEffect, useRef, useState} from 'react';
 import '../../scss/ui/SelectBox.scss';
 
 const SelectBox = ({label, options, fontSize, onSelectChange, isDisabled = false}) => {
-    // options가 없거나 undefined일 경우 기본값 설정
     if (!options || typeof options !== 'object') {
         options = {};
     }
 
-    // 선택된 옵션 상태값
     const defaultOptionKey = Object.keys(options).find(key => key === 'default');
     const firstOptionKey = defaultOptionKey ? 'default' : Object.keys(options)[0];
     const [selectedOption, setSelectedOption] = useState(firstOptionKey);
@@ -23,22 +21,19 @@ const SelectBox = ({label, options, fontSize, onSelectChange, isDisabled = false
         onSelectChange({key: option, value: options[option]});
     };
 
-    // 외부 클릭 감지 로직
     useEffect(() => {
         function handleClickOutside(event) {
             if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-                setIsOpen(false); // Ref 객체 밖의 클릭을 감지하면 드롭다운 닫기
+                setIsOpen(false);
             }
         }
 
-        // 클릭 이벤트 리스너 등록
         document.addEventListener('mousedown', handleClickOutside);
 
-        // 클린업 함수에서 이벤트 리스너 제거
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [wrapperRef]); // 의존성 배열에 wrapperRef를 추가
+    }, [wrapperRef]);
 
     const renderOptions = () => {
         const defaultOption = options['default'] ? (

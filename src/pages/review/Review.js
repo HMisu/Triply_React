@@ -9,7 +9,6 @@ import {Rating} from '@mui/material';
 import {removeReview} from '../../apis/reviewApi';
 
 const Review = () => {
-    // const {id} = useParams();
     const [review, setReview] = useState({
         title: '',
         content: '',
@@ -135,11 +134,6 @@ const Review = () => {
                             aria-readonly={review != null && loginNickname != review.writer ? 'true' : 'false'}
                             onChange={textFieldChange}/>
                     </div>
-                    {/*<div className='report_box'>*/}
-                    {/*    <SvgButton id={'report'} color={'red'}*/}
-                    {/*        svg={<img src={`${process.env.PUBLIC_URL}/assets/icons/report.svg`}*/}
-                    {/*            style={{ width: '21px', height: '21px' }} />} />*/}
-                    {/*</div>*/}
                 </div>
 
                 <div className='content_box'>

@@ -2,22 +2,13 @@ import React, {useCallback, useState} from 'react';
 import Input from '../../components/ui/lnput/Input.js';
 import '../../scss/pages/sign/Sign.scss';
 import FullWidthButton from '../../components/ui/button/FullWidthButton.js';
-import { signin } from '../../apis/userApi.js';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import {signin} from '../../apis/userApi.js';
+import {useDispatch} from 'react-redux';
+import {useLocation, useNavigate} from 'react-router-dom';
 import handleKakaoLogin from '../../components/user/handleKakaoLogin.js';
 import handleGoogleLogin from '../../components/user/handleGoogleLogin.js';
-import { useLocation } from 'react-router-dom';
 
 function SignIn() {
-
-    // const {
-    //   register,
-    //   formState: { errors },
-    //   handleSubmit,
-    //   watch,
-    // } = useForm({ mode: 'onChange' });
-
     const location = useLocation();
     const fromPath = location.state?.from?.pathname || '/';
 
@@ -39,17 +30,17 @@ function SignIn() {
 
     const rebuildHandleSignIn = useCallback(
         (e) => {
-          e.preventDefault();
-          dispatch(signin({ userId: form.userId, userPw: form.userPw }))
-            .then(() => {
-              navi(fromPath, { replace: true });
-            })
-            .catch((error) => {
-              console.error('Login failed:', error);
-            });
+            e.preventDefault();
+            dispatch(signin({userId: form.userId, userPw: form.userPw}))
+                .then(() => {
+                    navi(fromPath, {replace: true});
+                })
+                .catch((error) => {
+                    console.error('Login failed:', error);
+                });
         },
         [form, dispatch, fromPath]
-      );
+    );
 
     return (
         <div className="SignIn">
@@ -82,7 +73,7 @@ function SignIn() {
                     <span>간편 로그인</span>
                 </div>
                 <div className="banner-wrapper">
-                    <img className="kakao-login" src={process.env.PUBLIC_URL + "/assets/icons/kakao_login.png" }
+                    <img className="kakao-login" src={process.env.PUBLIC_URL + "/assets/icons/kakao_login.png"}
                          alt="Kakao-login" onClick={handleKakaoLogin}/>
                     <img className="google-login" src={process.env.PUBLIC_URL + '/assets/icons/google_login.png'}
                          alt="Google-login" onClick={handleGoogleLogin}/>

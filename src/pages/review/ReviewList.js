@@ -66,7 +66,6 @@ const ReviewList = () => {
                 page: 0,
             }));
         } else {
-            console.log("travelId is undefined");
             dispatch(getReview({
                 searchCondition: 'all',
                 searchKeyword: '',

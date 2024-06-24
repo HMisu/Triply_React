@@ -26,6 +26,4 @@ const chatSlice = createSlice({
     }
 });
 
-// export const {requestFriends, getChatList, lastMessage, unreadMessages} = chatSlice.actions;
-// export const {requestFriends, lastMessage, unreadMessages} = chatSlice.actions;
 export default chatSlice.reducer;

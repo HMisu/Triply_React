@@ -1,135 +1,137 @@
 @import '../../util.scss';
 
 .Chat {
-    font-family: "Noto Sans";
+  font-family: "Noto Sans";
 
-    .chat-request-container {
-        height: 13.3333rem;
-        
-        .chat-request-title {
-            height: 30%;
-            display: flex;
-            align-items: center;
-        }
-        .chat-request-list {
-            height: 70%;
-    
-            .request-friend-container {
-                margin-left: .6667rem;
-                width: 6.6667rem;
-                height: 100%;
-                position: relative;
-                
-                .request-friend-img-container {
-                    .request-friend-img {
-                        // 이미지는 원으로
-                        width: 6.6667rem;
-                        height: 6.6667rem;
-                        border-radius: 50%;
-                    }
-                    // x 표시는 오른쪽 상단에 붙이기
-                    .request-cancle-img {
-                        background-image: url('../../../../public/assets/icons/close.svg');
-                        background-size: cover;
-                        position: absolute;
-                        width: .8667rem;
-                        height: .8667rem;
-                        top: 0;
-                        right: 0;
-                    
-                    }
-                }
-                // 글자는 바닥에 붙이고 가운데 정렬
-                .request-friend-name {
-                    width: 100%;
-                    font-size: $little-font-size;
-                    font-weight: bold;
-                    position: absolute;
-                    bottom: 0;
-                    text-align: center;
-                }
-            }
-        }
+  .chat-request-container {
+    height: 13.3333rem;
+
+    .chat-request-title {
+      height: 30%;
+      display: flex;
+      align-items: center;
     }
 
-    .chat-list-title {
-        height: 5.5333rem;
+    .chat-request-list {
+      height: 70%;
+
+      .request-friend-container {
+        margin-left: .6667rem;
+        width: 6.6667rem;
+        height: 100%;
+        position: relative;
+
+        .request-friend-img-container {
+          .request-friend-img {
+            width: 6.6667rem;
+            height: 6.6667rem;
+            border-radius: 50%;
+          }
+
+          .request-cancle-img {
+            background-image: url('../../../../public/assets/icons/close.svg');
+            background-size: cover;
+            position: absolute;
+            width: .8667rem;
+            height: .8667rem;
+            top: 0;
+            right: 0;
+
+          }
+        }
+
+        .request-friend-name {
+          width: 100%;
+          font-size: $little-font-size;
+          font-weight: bold;
+          position: absolute;
+          bottom: 0;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .chat-list-title {
+    height: 5.5333rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .chat-list-container {
+    .chat-list {
+      height: 9.3333rem;
+      display: flex;
+
+      &:hover {
+        border-radius: 40px;
+        border: 1px solid #E1E1E1;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
+      }
+
+      .friend-container {
+        width: 11%;
+        height: 100%;
+        margin-left: 7%;
+
+        .friend-name {
+          position: relative;
+          width: 100%;
+          height: 28%;
+          font-size: $body-font-size;
+
+          justify-content: center;
+          display: flex;
+          margin-bottom: 10%;
+
+          p {
+            position: absolute;
+            top: 30%;
+            font-weight: bold;
+          }
+        }
+
+        .friend-img-container {
+          width: 100%;
+          height: 56%;
+          display: flex;
+
+          .friend-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+          }
+        }
+      }
+
+      .last-chat {
         display: flex;
         align-items: center;
-    }
-    
-    .chat-list-container {
+        justify-content: center;
+        width: 70%;
+        font-size: $body-font-size;
+        color: $text-gray;
+      }
 
-        .chat-list {
-            height: 9.3333rem;
-            display: flex;
-            // 마우스가 호버되었을 때만 그림자 효과
-            &:hover {
-                border-radius: 40px;
-                border: 1px solid #E1E1E1;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
-            }
+      .chat-cnt-icon-container {
+        top: 0;
 
-            .friend-container {
-                width: 11%;
-                height: 100%;
-                margin-left: 7%;
-                
-                .friend-name {
-                    position: relative;
-                    width: 100%;
-                    height: 28%;
-                    font-size: $body-font-size;
-                    // align-items: center;
-                    justify-content: center;
-                    display: flex;
-                    margin-bottom: 10%;
-                    p {
-                        position: absolute;
-                        top: 30%;
-                        font-weight: bold;
-                    }
-                }
-                .friend-img-container {
-                    width: 100%;
-                    height: 56%;
-                    display: flex;
+        .chat-cnt-icon {
+          margin-top: 10px;
+          width: 2.3333rem;
+          height: 2.3333rem;
+          border-radius: 50%;
+          background-color: $red;
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
-                    .friend-img {
-                        width: 100%;
-                        height: 100%;
-                        border-radius: 50%;
-                    }
-                }
-            }
-
-            .last-chat {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 70%;
-                font-size: $body-font-size;
-                color: $text-gray;
-            }
-
-            .chat-cnt-icon-container {
-                top: 0;
-
-                .chat-cnt-icon {
-                    margin-top: 10px;
-                    width: 2.3333rem;
-                    height: 2.3333rem;
-                    border-radius: 50%;
-                    background-color: $red;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    .chat-cnt {
-                        color: white;
-                        font-size: $body-font-size;
-                    }
-                }
-            }
+          .chat-cnt {
+            color: white;
+            font-size: $body-font-size;
+          }
         }
+      }
     }
+  }
 }

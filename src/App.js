@@ -59,17 +59,13 @@ function App() {
 
     const isAuthenticated = sessionStorage.getItem("ACCESS_TOKEN") !== null;
 
-
     return (
         <>
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persiststore}>
-                    {/* <Header/> */}
-                    {/*{location.pathname !== '/chat-room' && <Header/>}*/}
                     {!/^\/chat\/\d+$/.test(location.pathname) && <Header/>}
                     <div className="content">
                         <Routes>
-                            {/* Sample */}
                             <Route path="/sample-Input" element={<InputSample/>}></Route>
                             <Route path="/sample-ordershadow" element={<CommonBorderShadow/>}></Route>
                             <Route path="/sample-button" element={<ButtonSample/>}></Route>
@@ -83,7 +79,6 @@ function App() {
                             <Route path="/sample-community-feed-comment" element={<CommunityFeedComment/>}></Route>
                             <Route path="/sample-tag" element={<TagSample></TagSample>}></Route>
                             <Route path="/sample-modal" element={<ModalSample></ModalSample>}></Route>
-                            {/* page */}
                             <Route path="/" element={<Home/>}></Route>
                             <Route path="/report" element={<Report/>}></Route>
                             <Route path="/user-detail" element={<UserDetail/>}></Route>
@@ -116,10 +111,8 @@ function App() {
                             <Route path="/community-feed-comment-sample" element={<CommunityFeedComment/>}></Route>
                             <Route path="/community-write" element={<CommunityWriteModalSample/>}></Route>
                         </Routes>
-                        {/*{location.pathname !== '/chat-room' && <Footer/>}*/}
                         {!/^\/chat\/\d+$/.test(location.pathname) && <Footer/>}
                     </div>
-                    {/* <Footer/> */}
                     {isHomePage && <style>{`
                 #root {
                   background: linear-gradient(90deg, rgba(136, 174, 237, 1) 30%, rgba(190, 212, 242, 1) 100%);

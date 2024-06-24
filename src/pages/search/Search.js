@@ -8,30 +8,28 @@ import FriendSearchResult from "./FriendSearchResult";
 const Search = () => {
     const [selectedOption, setSelectedOption] = useState('');
 
-    // todo : 이미지가 없을 경우 기본 이미지로 대체 로직
-
     const testOptions = ['여행', '친구', '인기검색어', '검색결과', '검색결과', '검색결과', '검색결과', '검색결과', '검색결과', '검색결과'];
     const testPopularSearchList = ['검색결과', '검색결과', '검색결과', '검색결과', '검색결과', '검색결과', '검색결과', '검색결과', '검색결과', '검색결과'];
     const testFriendSearchResults = [
         {
-            searchResultId : 'bbb',
-            searchResultName : 'bbb',
-            searchResultImg : '/assets/temp/test_image1.jpg'
+            searchResultId: 'bbb',
+            searchResultName: 'bbb',
+            searchResultImg: '/assets/temp/test_image1.jpg'
         },
         {
-            searchResultId : 'ccc',
-            searchResultName : 'ccc',
-            searchResultImg : '/assets/temp/test_image2.jpg'
+            searchResultId: 'ccc',
+            searchResultName: 'ccc',
+            searchResultImg: '/assets/temp/test_image2.jpg'
         },
         {
-            searchResultId : 'ddd',
-            searchResultName : 'ddd',
-            searchResultImg : '/assets/temp/test_image3.jpg'
+            searchResultId: 'ddd',
+            searchResultName: 'ddd',
+            searchResultImg: '/assets/temp/test_image3.jpg'
         },
         {
-            searchResultId : 'eee',
-            searchResultName : 'eee',
-            searchResultImg : '/assets/temp/test_image4.jpg'
+            searchResultId: 'eee',
+            searchResultName: 'eee',
+            searchResultImg: '/assets/temp/test_image4.jpg'
         }
     ];
     const testTravelSearchResults = [
@@ -80,43 +78,25 @@ const Search = () => {
     return (
         <div className='Search'>
             <div className='section-search-container'>
-                {/* <div className='section-search'> */}
-                    {/* <div className='select-box-container'> */}
-                    <SelectBox options={testOptions}></SelectBox>
-                    {/* </div> */}
-                    {/* <div className='input-container'> */}
-                    <Input
-                        placeholder={'검색어를 입력하세요'}
-                    ></Input>
-                    {/* </div> */}
-                {/* </div> */}
+                <SelectBox options={testOptions}></SelectBox>
+                <Input
+                    placeholder={'검색어를 입력하세요'}
+                ></Input>
             </div>
-                <div className='section-tags'>
-                    <Tag text={'태그 1'} color={'blue'}></Tag>
-                    <Tag text={'태그 2'} color={'blue'}></Tag>
-                    <Tag text={'태그 3'} color={'blue'}></Tag>
-                    <Tag text={'태그 4'} color={'blue'}></Tag>
-                    <Tag text={'태그 5'} color={'blue'}></Tag>
-                </div>
+            <div className='section-tags'>
+                <Tag text={'태그 1'} color={'blue'}></Tag>
+                <Tag text={'태그 2'} color={'blue'}></Tag>
+                <Tag text={'태그 3'} color={'blue'}></Tag>
+                <Tag text={'태그 4'} color={'blue'}></Tag>
+                <Tag text={'태그 5'} color={'blue'}></Tag>
+            </div>
             <div className='section-search-result'>
                 <div className='section-search-result-title'>
                     검색결과
                 </div>
                 <div className='section-search-result-content'>
                     <FriendSearchResult friendSearchResults={testFriendSearchResults}></FriendSearchResult>
-                    {/*<TravelSearchResult travelSearchResults={testTravelSearchResults}></TravelSearchResult>*/}
-                    {/*<PopularSearchResult popularSearchList={testPopularSearchList}></PopularSearchResult>*/}
                 </div>
-                {/* <div className='section-search-result-content'>
-          {(popularSearchList).map((result, index) => {
-              return (
-                <div className='result-list' key={index}>
-                  {index + 1}. {result}
-                </div>
-              );
-            })}
-        </div> */}
-
             </div>
         </div>
     );
