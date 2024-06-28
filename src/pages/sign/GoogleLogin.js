@@ -11,13 +11,13 @@ const GoogleLogin = () => {
     const navi = useNavigate();
 
     const API_URL = process.env.REACT_APP_ROOT;
-
+    const REDIRECT_URL = process.env.REACT_APP_KAKAO_REDIRECT_URL;
     useEffect(() => {
         const params = new URL(document.location.toString()).searchParams;
         const google_client_id = process.env.REACT_APP_GOOGLE_CLIENT_ID;
         const google_secret_key = process.env.REACT_APP_GOOGLE_CLIENT_SECRET;
         const code = params.get("code");
-        const google_redirect_url = 'http://localhost:3000/oauth/google';
+        const google_redirect_url = `${REDIRECT_URL}/oauth/google`;
         axios.post(
             `https://oauth2.googleapis.com/token?code=${code}&client_id=${google_client_id}&redirect_uri=${google_redirect_url}&client_secret=${google_secret_key}&grant_type=authorization_code`,
             {headers: {"Content-type": "application/x-www-form-urlencoded"}}

@@ -11,13 +11,14 @@ const KakaoLogin = () => {
     const navi = useNavigate();
 
     const API_URL = process.env.REACT_APP_ROOT;
+    const REDIRECT_URL = process.env.REACT_APP_KAKAO_REDIRECT_URL;
 
     useEffect(() => {
         const params = new URL(document.location.toString()).searchParams;
         const code = params.get('code');
         const grantType = "authorization_code";
         const REST_API_KEY = process.env.REACT_APP_KAKAO_REST_API;
-        const REDIRECT_URI = 'http://localhost:3000/oauth/kakao';
+        const REDIRECT_URI = `${REDIRECT_URL}/oauth/kakao`;
         axios.post(
             `https://kauth.kakao.com/oauth/token?grant_type=${grantType}&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&code=${code}`,
             {},
