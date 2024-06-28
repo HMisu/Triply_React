@@ -1,12 +1,14 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 
+const API_URL = process.env.REACT_APP_ROOT;
+
 export const getReview = createAsyncThunk(
     'review/getReview',
     async (search, thunkAPI) => {
         try {
             const response = await axios.get(
-                `http://localhost:9090/review/list`,
+                `${API_URL}/review/list`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
@@ -33,7 +35,7 @@ export const getRandReview = createAsyncThunk(
     async (search, thunkAPI) => {
         try {
             const response = await axios.get(
-                `http://localhost:9090/review/rand`,
+                `${API_URL}/review/rand`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
@@ -55,7 +57,7 @@ export const reviewReg = createAsyncThunk(
         console.log(reviewDTO);
         try {
             const response = await axios.post(
-                `http://localhost:9090/review/reg`,
+                `${API_URL}/review/reg`,
                 reviewDTO,
                 {
                     headers: {
@@ -100,7 +102,7 @@ export const getMyReview = createAsyncThunk(
     async (search, {rejectWithValue}) => {
         try {
             const token = sessionStorage.getItem("ACCESS_TOKEN");
-            const response = await axios.get(`http://localhost:9090/review/my`, {
+            const response = await axios.get(`${API_URL}/review/my`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

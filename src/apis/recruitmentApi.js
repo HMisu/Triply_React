@@ -1,12 +1,14 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
+
+const API_URL = process.env.REACT_APP_ROOT;
 
 export const getRecruitment = createAsyncThunk(
     'recruitment/getRecruitment',
     async (search, thunkAPI) => {
         try {
             const response = await axios.get(
-                `http://localhost:9090/recruitment/list`,
+                `${API_URL}/recruitment/list`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
@@ -22,7 +24,7 @@ export const getRecruitment = createAsyncThunk(
             console.log(response);
 
             return response.data;
-        } catch(e) {
+        } catch (e) {
             return thunkAPI.rejectWithValue(e);
         }
     }
@@ -31,10 +33,9 @@ export const getRecruitment = createAsyncThunk(
 export const recruitmentReg = createAsyncThunk(
     'recruitment/reg',
     async (recruitmentDTO, thunkAPI) => {
-        console.log(recruitmentDTO);
         try {
             const response = await axios.post(
-                `http://localhost:9090/recruitment/reg`,
+                `${API_URL}/recruitment/reg`,
                 recruitmentDTO,
                 {
                     headers: {
@@ -43,8 +44,6 @@ export const recruitmentReg = createAsyncThunk(
                     }
                 }
             );
-
-            
 
             console.log(response);
 
@@ -60,7 +59,7 @@ export const removeRecruitment = createAsyncThunk(
     async (seq, thunkAPI) => {
         try {
             const response = await axios.delete(
-                `/recruitment/${seq}`,
+                `${API_URL}/recruitment/${seq}`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
@@ -69,7 +68,7 @@ export const removeRecruitment = createAsyncThunk(
             );
 
             return response.data.pageItems;
-        } catch(e) {
+        } catch (e) {
             return thunkAPI.rejectWithValue(e);
         }
     }
@@ -78,10 +77,10 @@ export const removeRecruitment = createAsyncThunk(
 
 export const getMyRecruitment = createAsyncThunk(
     'recruitment/getMyRecruitment',
-    async (search, { rejectWithValue }) => {
+    async (search, {rejectWithValue}) => {
         try {
             const token = sessionStorage.getItem("ACCESS_TOKEN");
-            const response = await axios.get(`http://localhost:9090/recruitment/my`, {
+            const response = await axios.get(`${API_URL}/recruitment/my`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

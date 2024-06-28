@@ -7,9 +7,10 @@ import {Grid} from '@mui/material';
 import {setIsLogin, setLoginUserId, setLoginUserName} from '../../slices/userSlice';
 
 const GoogleLogin = () => {
-
     const dispatch = useDispatch();
     const navi = useNavigate();
+
+    const API_URL = process.env.REACT_APP_ROOT;
 
     useEffect(() => {
         const params = new URL(document.location.toString()).searchParams;
@@ -34,13 +35,13 @@ const GoogleLogin = () => {
                     }
                 )
                     .then((res) => {
-                        axios.post('http://localhost:9090/user/sign-up', {
+                        axios.post(`${API_URL}/user/sign-up`, {
                             userId: res.data.email,
                             userPw: res.data.id,
                             userName: res.data.name
                         })
                             .then(() => {
-                                axios.post('http://localhost:9090/user/sign-in', {
+                                axios.post(`${API_URL}/user/sign-in`, {
                                     userId: res.data.email,
                                     userPw: res.data.id,
                                     userName: res.data.name
@@ -58,7 +59,7 @@ const GoogleLogin = () => {
                             })
                             .catch((e) => {
                                 if (e.response.data.errorCode === 301) {
-                                    axios.post('http://localhost:9090/user/sign-in', {
+                                    axios.post(`${API_URL}/user/sign-in`, {
                                         userId: res.data.email,
                                         userPw: res.data.id,
                                         userName: res.data.name

@@ -1,6 +1,8 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 
+const API_URL = process.env.REACT_APP_ROOT;
+
 export const communityReg = createAsyncThunk(
     'community/reg',
     async (communityDTO, thunkAPI) => {
@@ -30,7 +32,7 @@ export const communityReg = createAsyncThunk(
 
         try {
             const response = await axios.post(
-                `http://localhost:9090/community/reg`,
+                `${API_URL}/community/reg`,
 
                 formData, {
                     headers: {
@@ -76,7 +78,7 @@ export const communityModify = createAsyncThunk(
             }
 
             const response = await axios.put(
-                'http://localhost:9090/community/modify',
+                `${API_URL}/community/modify`,
                 formData,
                 {
                     headers: {

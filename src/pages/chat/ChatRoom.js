@@ -13,6 +13,8 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 const ChatRoom = () => {
+    const API_URL = process.env.REACT_APP_ROOT;
+
     const navi = useNavigate();
     const dispatch = useDispatch();
 
@@ -29,13 +31,13 @@ const ChatRoom = () => {
     const token = sessionStorage.getItem("ACCESS_TOKEN");
 
     var client = Stomp.over(() => {
-        return new SockJs('http://localhost:9090/chatting');
+        return new SockJs(`${API_URL}/chatting`);
     });
 
     const clientRef = useRef(null);
     useEffect(() => {
         if (clientRef.current == null) {
-            clientRef.current = Stomp.over(() => new SockJs('http://localhost:9090/chatting'));
+            clientRef.current = Stomp.over(() => new SockJs(`${API_URL}/chatting`));
         }
 
         const client = clientRef.current;

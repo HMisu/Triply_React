@@ -54,9 +54,10 @@ const ViewTravelInfo = () => {
 
     const getTravel = useCallback(async () => {
         const test = checkAndAddPostView(id);
+        const API_URL = process.env.REACT_APP_ROOT;
         try {
             const response = await axios.get(
-                `http://localhost:9090/travel/${id}`,
+                `${API_URL}/travel/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`

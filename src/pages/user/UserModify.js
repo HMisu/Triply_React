@@ -11,6 +11,8 @@ import {deleteProfileImage, updateProfileImage} from '../../apis/userApi';
 import SelectBox from '../../components/ui/SelectBox';
 
 const UserModify = () => {
+    const API_URL = process.env.REACT_APP_ROOT;
+
     const userId = useSelector(state => state.userSlice.loginUserId);
     const profileImageUrl = useSelector((state) => state.userSlice.profileImageUrl);
     const dispatch = useDispatch();
@@ -38,7 +40,7 @@ const UserModify = () => {
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
-                const response = await axios.get(`http://localhost:9090/user/modifyuser/${userId}`, {
+                const response = await axios.get(`${API_URL}/user/modifyuser/${userId}`, {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`,
                     },
@@ -74,7 +76,7 @@ const UserModify = () => {
         try {
             const formData = new FormData();
             formData.append('file', file);
-            const response = await axios.post(`http://localhost:9090/user/upload`, formData, {
+            const response = await axios.post(`${API_URL}/user/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`,
@@ -105,7 +107,7 @@ const UserModify = () => {
     };
 
     useEffect(() => {
-        axios.get('http://localhost:9090/user/areas')
+        axios.get(`${API_URL}/user/areas`)
             .then(response => {
                 setAreas(response.data);
             })
@@ -190,7 +192,7 @@ const UserModify = () => {
         try {
             const formData = new FormData();
             formData.append('currentPassword', currentPassword);
-            const response = await axios.post('http://localhost:9090/user/confirmPassword', formData, {
+            const response = await axios.post(`${API_URL}/user/confirmPassword`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`,
@@ -215,7 +217,7 @@ const UserModify = () => {
                 const formData = new FormData();
                 formData.append('newPassword', newPassword);
 
-                await axios.put(`http://localhost:9090/user/updatePassword`, formData, {
+                await axios.put(`${API_URL}/user/updatePassword`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`,
@@ -232,7 +234,7 @@ const UserModify = () => {
     const handleSaveNickname = async () => {
 
         try {
-            await axios.put(`http://localhost:9090/user/modifyuser/${userId}`, {
+            await axios.put(`${API_URL}/user/modifyuser/${userId}`, {
                 userName: editedNickname,
             }, {
                 headers: {
@@ -253,7 +255,7 @@ const UserModify = () => {
 
     const handleSave = async () => {
         try {
-            await axios.put(`http://localhost:9090/user/modifyuser/${userId}`, {
+            await axios.put(`${API_URL}/user/modifyuser/${userId}`, {
                 userTel: phoneNumber,
                 profileImageUrl,
                 tags,

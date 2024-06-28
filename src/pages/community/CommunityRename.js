@@ -9,6 +9,8 @@ import {useDispatch} from 'react-redux';
 import {communityModify} from '../../apis/communityApi.js';
 
 const CommunityRename = () => {
+    const API_URL = process.env.REACT_APP_ROOT;
+
     const [community, setCommunity] = useState({
         description: '',
         member: '',
@@ -24,7 +26,7 @@ const CommunityRename = () => {
     const getCommunity = useCallback(async () => {
         try {
             const response = await axios.get(
-                `http://localhost:9090/community/community/${seq}`,
+                `${API_URL}/community/community/${seq}`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`

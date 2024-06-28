@@ -1,12 +1,14 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 
+const API_URL = process.env.REACT_APP_ROOT;
+
 export const getTravels = createAsyncThunk(
     'travel/getTravels',
     async (search, thunkAPI) => {
         try {
             const response = await axios.get(
-                `http://localhost:9090/travel/carousel`,
+                `${API_URL}/travel/carousel`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
@@ -32,7 +34,7 @@ export const getMakrers = createAsyncThunk(
     async (location, thunkAPI) => {
         try {
             const response = await axios.get(
-                `http://localhost:9090/travel/marker`,
+                `${API_URL}/travel/marker`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
@@ -56,7 +58,7 @@ export const getNearTravels = createAsyncThunk(
     async (location, thunkAPI) => {
         try {
             const response = await axios.get(
-                `http://localhost:9090/travel/near`,
+                `${API_URL}/travel/near`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
@@ -80,7 +82,7 @@ export const getViewCntTrevels = createAsyncThunk(
     async (location, thunkAPI) => {
         try {
             const response = await axios.get(
-                `http://localhost:9090/travel/viewCnt`,
+                `${API_URL}/travel/viewCnt`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
@@ -100,7 +102,7 @@ export const getAreaCodes = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             const response = await axios.get(
-                `http://localhost:9090/travel/areaCode`,
+                `${API_URL}/travel/areaCode`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
@@ -121,7 +123,7 @@ export const getSigunguCodes = createAsyncThunk(
     async (areaCode, thunkAPI) => {
         try {
             const response = await axios.get(
-                `http://localhost:9090/travel/sigunguCode`,
+                `${API_URL}/travel/sigunguCode`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
@@ -142,7 +144,7 @@ export const getBookmarks = createAsyncThunk(
     async (search, thunkAPI) => {
         try {
             const response = await axios.get(
-                `http://localhost:9090/bookmark/`,
+                `${API_URL}/bookmark/`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
@@ -164,7 +166,7 @@ export const regBookmark = createAsyncThunk(
     async ({id, isBookmark}, thunkAPI) => {
         try {
             const response = await axios.post(
-                `http://localhost:9090/bookmark/`,
+                `${API_URL}/bookmark/`,
                 {
                     id: id,
                     isReg: isBookmark

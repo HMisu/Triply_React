@@ -1,12 +1,14 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getMessages = createAsyncThunk (
+const API_URL = process.env.REACT_APP_ROOT;
+
+export const getMessages = createAsyncThunk(
     'chatRoom/getMessages',
     async (chatRoomId, thunkAPI) => {
         try {
             const response = await axios.get(
-                `http://localhost:9090/chat/${chatRoomId}`,
+                `${API_URL}/chat/${chatRoomId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
@@ -21,12 +23,12 @@ export const getMessages = createAsyncThunk (
     }
 );
 
-export const deleteChatRoom = createAsyncThunk (
+export const deleteChatRoom = createAsyncThunk(
     'chatRoom/deleteChatRoom',
     async (chatRoomId, thunkAPI) => {
         try {
             const response = await axios.delete(
-                `http://localhost:9090/chat/${chatRoomId}`,
+                `${API_URL}/chat/${chatRoomId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`

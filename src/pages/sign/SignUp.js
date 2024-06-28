@@ -12,6 +12,7 @@ import {useDispatch} from 'react-redux';
 import axios from 'axios';
 
 function SignUp() {
+    const API_URL = process.env.REACT_APP_ROOT;
 
     const [idCheck, setIdCheck] = useState(false);
     const [idChecked, setIdChecked] = useState(false);
@@ -55,7 +56,7 @@ function SignUp() {
     }, [year, month, day]);
 
     useEffect(() => {
-        axios.get('http://localhost:9090/user/areas')
+        axios.get(`${API_URL}/user/areas`)
             .then(response => {
                 setAreas(response.data);
             })
@@ -71,8 +72,6 @@ function SignUp() {
         setCities(cityNames);
         setCity('');
     };
-
-    const API_URL = "http://localhost:9090";
 
     const handleIdCheck = async (id) => {
         if (!id) {

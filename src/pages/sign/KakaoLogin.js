@@ -10,6 +10,8 @@ const KakaoLogin = () => {
     const dispatch = useDispatch();
     const navi = useNavigate();
 
+    const API_URL = process.env.REACT_APP_ROOT;
+
     useEffect(() => {
         const params = new URL(document.location.toString()).searchParams;
         const code = params.get('code');
@@ -34,13 +36,13 @@ const KakaoLogin = () => {
                     }
                 )
                     .then((res) => {
-                        axios.post('http://localhost:9090/user/sign-up', {
+                        axios.post(`${API_URL}/user/sign-up`, {
                             userId: res.data.kakao_account.email,
                             userPw: res.data.id,
                             userName: res.data.kakao_account.profile.nickname
                         })
                             .then(() => {
-                                axios.post('http://localhost:9090/user/sign-in', {
+                                axios.post(`${API_URL}/user/sign-in`, {
                                     userId: res.data.kakao_account.email,
                                     userPw: res.data.id,
                                     userName: res.data.kakao_account.profile.nickname
@@ -58,7 +60,7 @@ const KakaoLogin = () => {
                             })
                             .catch((e) => {
                                 if (e.response.data.errorCode === 301) {
-                                    axios.post('http://localhost:9090/user/sign-in', {
+                                    axios.post(`${API_URL}/user/sign-in`, {
                                         userId: res.data.kakao_account.email,
                                         userPw: res.data.id,
                                         userName: res.data.kakao_account.profile.nickname

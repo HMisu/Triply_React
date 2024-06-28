@@ -44,9 +44,10 @@ const Review = () => {
     const nowDate = detailDate(new Date(review.regDate));
 
     const getReview = useCallback(async () => {
+        const API_URL = process.env.REACT_APP_ROOT;
         try {
             const response = await axios.get(
-                `http://localhost:9090/review/${seq}`,
+                `${API_URL}/review/${seq}`,
                 {
                     headers: {
                         Authorization: `Bearer ${sessionStorage.getItem("ACCESS_TOKEN")}`
